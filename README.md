@@ -1,21 +1,57 @@
 ## Basic Commands
 
-- List Docker images: $ docker images
+- List Docker images: 
 
-- List all containers: $ docker ps -a
+```bash
+docker images
+```
 
-- Docker run with terminal interaction: $ docker run -ti
+- List all containers: 
 
-- Docker Ubuntu with terminal interaction: $ docker run -ti ubuntu /bin/bash
+```bash
+docker ps -a
+```
+
+- Docker run with terminal interaction:
+
+```bash
+docker run -ti
+```
+
+- Docker Ubuntu with terminal interaction:
+
+```bash
+docker run -ti ubuntu /bin/bash
+```
 
 - Live container and mantais container running: ctrl + p + q
 
-- Enter container with is running: $ docker attach CONTAINER_ID
+- Enter container with is running: $ 
 
-- Only create container: $ docker create ubuntu
+```bash
+docker attach CONTAINER_ID
+```
 
-- Verify container resources: $ docker stats CONTAINER_ID
+- Only create container:
 
-- Verify how process running on container: $ docker top CONTAINER_ID
+```bash
+docker create ubuntu
+```
 
-- Verify container logs: $ docker logs CONTAINER_ID
+- Verify container resources:
+
+```bash
+docker stats CONTAINER_ID
+```
+
+- Verify how process running on container:
+
+```bash
+docker top CONTAINER_ID
+```
+
+- Verify container logs:
+
+```bash
+docker logs CONTAINER_ID
+```
