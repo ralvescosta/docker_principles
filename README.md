@@ -121,3 +121,44 @@ docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdata -e POSTGRES_USERS
 
 docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdata -e POSTGRES_USERSQL=docker -e POSTGRES_PASSSQL=docker -e POSTGRESSQL_DB=doc
 ```
+
+## Dockerfile
+
+### Instructions
+
+- FROM debian //First instruction to set the base imagem to mount own image
+
+- MAINTAINER Rafael // author
+
+- RUN apt-get update && apt-get install apache2 && apt-ger clean //That command 
+always if execute create a container layer, and each container layer is imitable 
+"read-only", so if you create several run the container created several layers 
+ready-only, only last layer is read-write. Prefere combine multiple commands concats with '&&'
+
+- ADD apa.txt //Copy host file (All candy of files) to into the container 
+
+- CMD ["sh", "-c", "echo", "$HOME"] //Principal entry point commands
+
+- LABEL Description // Metadata
+
+- COPY //only files and directory's
+
+- ENTRYPOINT ["/user/bin/apache2ctl", "-D", "FOREGROUND"] //Principal app into the container, 
+is important to set the principal application on ENTRYPOINT because if the something
+do on the principal application configured the container is turn of. 
+
+- ENV NODE_ENV=development //environments
+
+- EXPOSE 80 //container port to expose
+
+- USER USERNAME //set container user
+
+- WORKDIR /batata //Set the principal directory for a container
+
+- VOLUME /some_directory
+
+### build
+
+```bash
+docker build -t NAME:1.0 .
+```
