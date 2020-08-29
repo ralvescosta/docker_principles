@@ -1,3 +1,5 @@
+# Docker LinuxTips Training
+
 ## Basic Commands
 
 - List Docker images: 
@@ -58,6 +60,8 @@ docker logs CONTAINER_ID
 
 - Inspect All container configuration:
 
+## Config Container Memory
+
 ```bash
 docker inspect CONTAINER_ID
 
@@ -76,6 +80,8 @@ docker run -ti --memory 512m debian
 docker update -m 256m CONTAINER_ID
 ```
 
+## Config Container CPU
+
 - The CPU configuration. Imagine you have three containers, at first container 
 you set the CPU to be 1024, at second 514 and at third 512. In this case, 
 the first will receive 50% of CPU and the others two 25%.
@@ -90,4 +96,28 @@ docker run -ti --cpu-shares 512 --name third debian
 
 ```bash
 docker update --cpu-shares 512 first
+```
+
+## Volumes
+
+- Volumes is the sharing of the host file system with the container, create:
+
+```bash
+docker run -tu -v /volume ubuntu /bin/bash
+```
+
+- Create Volume to specific path on host:
+
+```bash
+docker run -tu -v /root/some_path:/volume ubuntu /bin/bash
+```
+
+- Container DATA ONLY: Container using to sharing volumes to others containers
+
+```bash
+docker create -v /data --name dbdata ubuntu
+
+docker run -d -p 5432:5432 --name pgsql1 --volumes-from dbdata -e POSTGRES_USERSQL=docker -e POSTGRES_PASSSQL=docker -e POSTGRESSQL_DB=doc
+
+docker run -d -p 5433:5432 --name pgsql2 --volumes-from dbdata -e POSTGRES_USERSQL=docker -e POSTGRES_PASSSQL=docker -e POSTGRESSQL_DB=doc
 ```
