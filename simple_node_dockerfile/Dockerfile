@@ -9,6 +9,9 @@ COPY package*.json ./
 # Install dependencis
 RUN npm install
 
+# Enviorments
+ENV NODE_ENV development
+
 # Copy your code into the container WORKDIR
 COPY . .
 
